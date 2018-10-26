@@ -54,14 +54,27 @@ spec:
     }
 
     stage('ImageDocker') {
+    
+    when {
+        anyOf {
+          branch 'master';
+          branch 'develop'
+        	  }
+         }
+
       steps {
         container('docker') {
           sh 'docker build -t my-app:$BUILD_NUMBER'
         }
       }
     }
+    
 
     stage('RunDocker') {
+
+    when {
+        branch 'master';
+      }
       steps {
         container('docker') {
           sh 'docker run my-app:$BUILD_NUMBER'
@@ -75,4 +88,5 @@ spec:
       junit 'target/surefire-reports/*.xml'
     }
   }
-}
+ }
+
