@@ -1,4 +1,4 @@
-﻿// Configuration des images docker utilisées pour les différentes étapes CI/CD
+// Configuration des images docker utilisées pour les différentes étapes CI/CD
 pipeline {
   agent {
     kubernetes {
